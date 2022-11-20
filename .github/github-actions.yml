@@ -1,0 +1,28 @@
+name: Práctica módulo 2 🚀
+run-name: Práctica módulo 2  - 2º ejercicio 🚀
+on: [push]
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🎉 El trabajo fue activado automáticamente por un ${{ github.event_name }} evento."      
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      - uses: snok/install-poetry@v1
+        with:
+          version: 1.2.1
+        
+      - name: Test with pytest==7.1.2
+        run: |
+          pip install pytest
+          pytest
+
+      - name: Ejecutando Testing
+        run: poetry run pytest
+      - run: poetry build
+
+      - name: Fichero del firectorio
+        run: ls ${{ github.workspace }}
